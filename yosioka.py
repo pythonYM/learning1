@@ -30,8 +30,8 @@ a=float(jsonData["quotes"][0]["high"])
 b=float(jsonData["quotes"][0]["low"])
 
 
-#x = np.linspace(0,24,24)
-x = np.linspace(-10,10,100)
-y = x*x
+
+x = np.linspace(0,24,25)
+y = np.linspace(b,a,25)
 plt.plot(x,y)
 plt.show()

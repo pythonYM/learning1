@@ -1,19 +1,8 @@
-import requests
+import plotly.plotly as py
+import plotly.graph_objs as go
+from plotly.tools import FigureFactory as FF
 
-#とりあえず例として、どこかのWeb APIを叩くことにする
-url = "http://www.gaitameonline.com/rateaj/getrate"
+import pandas as pd
+import numpy as np
+import string
 
-#requests.getを使うと、レスポンス内容を取得できるのでとりあえず変数へ保存
-response = requests.get(url)
-
-#response.json()でJSONデータに変換して変数へ保存
-jsonData = response.json()
-
-#このJSONオブジェクトは、連想配列（Dict）っぽい感じのようなので
-#JSONでの名前を指定することで情報がとってこれる
-print(jsonData["quotes"])
-print(jsonData["quotes"][0])
-print(jsonData["quotes"][0]["high"])
-
-#responseから取得したJSONデータが単一のJSONオブジェクトではなく
-#配列みたいになっているときはfor文と組み合わせてやるとよし。
