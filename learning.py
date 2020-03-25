@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np
+from pandas import DataFrame
 
-df_train = pd.read_csv("C:/Users/191016PM/Downloads/winequality-red.csv")
+wine_data_set = pd.read_csv("winequality-red.csv",sep=";",header=0)
 
-df_train.density.value_counts()
+#説明変数(ワインに含まれる成分)
+X = DataFrame(wine_data_set.drop("quality",axis=1))
 
-X=df_train.loc[:, ["density"]]
-y=df_train.loc[:, "quality"]
+#目的変数(各ワインの品質を10段階評価したもの)
+y = DataFrame(wine_data_set["quality"])
 
 from sklearn.model_selection import train_test_split
 
