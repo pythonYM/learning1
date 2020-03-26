@@ -1,1 +1,78 @@
-https://www.youtube.com/watch?v=er02CtNUZVA
+識別精度を評価するための指標
+上記で説明した TP, TN, FP, FN を用いて、識別精度を評価するための指標がいくつかあります。本ページでは、主要な指標のみを紹介します。本ページにない指標は、Wikipedia (英語版) の Confusion matrix – Wikipedia の記事に詳しく記されているので、参考にしましょう。
+
+正解率 (Accuracy)
+正解率 (Accuracy) とは、「本来ポジティブに分類すべきアイテムをポジティブに分類し、本来ネガティブに分類すべきアイテムをネガティブに分類できた割合」を示し、以下の式で表されます。
+
+Accuracy = (TP + TN) / (TP + TN + FP + FN)
+
+scikit-learn には sklearn.metrics.accuracy_score として、計算用のメソッドが実装されています。
+
+Python
+1
+2
+3
+4
+5
+>>> from sklearn.metrics import accuracy_score
+>>> y_true = [0, 0, 0, 0, 1, 1, 1, 0, 1, 0]
+>>> y_pred = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1]
+>>> accuracy_score(y_true, y_pred)
+0.69999999999999996
+精度 (Precision)
+精度 (Precision) とは、「ポジティブに分類されたアイテムのうち、実際にポジティブであったアイテムの割合」を示し、以下の式で表されます。
+
+Precision = TP / (TP + FP)
+
+scikit-learn には sklearn.metrics.precision_score として、計算用のメソッドが実装されています。
+
+Python
+1
+2
+3
+4
+5
+>>> from sklearn.metrics import precision_score
+>>> y_true = [0, 0, 0, 0, 1, 1, 1, 0, 1, 0]
+>>> y_pred = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1]
+>>> precision_score(y_true, y_pred)
+0.59999999999999998
+検出率 (Recall)
+検出率 (Recall) とは、「本来ポジティブに分類すべきアイテムを、正しくポジティブに分類できたアイテムの割合」を示し、以下の式で表されます。
+検出率は、真陽性率 (TPR, True-Positive Rate) または、感度 (Sensitivity) とも呼ばれます。
+
+Recall = TPR = Sensitivity = TP / (TP + FN)
+
+scikit-learn には sklearn.metrics.recall_score として、計算用のメソッドが実装されています。
+
+Python
+1
+2
+3
+4
+5
+>>> from sklearn.metrics import recall_score
+>>> y_true = [0, 0, 0, 0, 1, 1, 1, 0, 1, 0]
+>>> y_pred = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1]
+>>> recall_score(y_true, y_pred)
+0.75
+F 値
+F 値 (F-measure, F-score, F1 Score とも呼ばれます) とは、精度 (Precision) と検出率 (Recall) をバランス良く持ち合わせているかを示す指標です。つまり、精度は高くても、検出率が低いモデルでないか、逆に、検出率は高くても、精度が低くなっていないか、といった評価を示します。
+
+F 値は、以下の式のように、検出精度 (Precision) と、検出率 (Recall) の調和平均で求められ、0 〜 1 の間の数値で出力され、0 の場合最も悪い評価、1 の場合最も良い評価となります。
+
+F1 = 2 * (precision * recall) / (precision + recall)
+
+scikit-learn には sklearn.metrics.f1_score として、計算用のメソッドが実装されています。
+
+Python
+1
+2
+3
+4
+5
+>>> from sklearn.metrics import f1_score
+>>> y_true = [0, 0, 0, 0, 1, 1, 1, 0, 1, 0]
+>>> y_pred = [0, 0, 0, 0, 1, 1, 1, 1, 0, 1]
+>>> f1_score(y_true, y_pred)
+0.66666666666666652
