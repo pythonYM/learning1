@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from pandas import DataFrame
 
-wine_data_set = pd.read_csv("winequality-red.csv",sep=";",header=0)
+wine_data_set = pd.read_csv("w.csv",sep=";",header=0)
 
 #説明変数(ワインに含まれる成分)
 X = DataFrame(wine_data_set.drop("quality",axis=1))
