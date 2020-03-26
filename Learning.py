@@ -5,10 +5,10 @@ from scipy.constants import precision
 from sklearn.model_selection import train_test_split
 
 
-df = pd.read_csv("/Users/191016PM/Desktop/winequality.csv", sep=";", encoding="utf-8")
+df = pd.read_csv("winequality.csv", sep=";", encoding="utf-8")
 print(df)
 
-wine_data_set = pd.read_csv("w.csv",sep=";",header=0)
+wine_data_set = pd.read_csv("winequality.csv",sep=";",header=0)
 
 
 # データをラベルとデータに分離
